@@ -23,7 +23,9 @@ const Header: FC<IHeaderProps> = ({
         <StyledThisComp.Row>
           {isExistData ? (
             <>
-              <StyledThisComp.Content>{date}</StyledThisComp.Content>
+              <StyledThisComp.Content>
+                {date?.substring(0, 17)}
+              </StyledThisComp.Content>
               <StyledThisComp.ButtonWrapper>
                 <Button
                   variant="text"
