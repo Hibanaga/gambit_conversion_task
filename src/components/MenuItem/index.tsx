@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import * as StylesMenuHeader from "../MenuHeader/MenuHeader.styled";
 import * as StyledThisComp from "./MenuItem.styled";
 
 interface IMenuItemProps {
@@ -10,7 +11,7 @@ const MenuItem: FC<IMenuItemProps> = ({ asset }) => {
     <StyledThisComp.Wrapper>
       {asset.map((item, idx) => (
         <StyledThisComp.WrapperItem key={idx}>
-          <StyledThisComp.Item>{item}</StyledThisComp.Item>
+          <StylesMenuHeader.Item>{item}</StylesMenuHeader.Item>
         </StyledThisComp.WrapperItem>
       ))}
     </StyledThisComp.Wrapper>

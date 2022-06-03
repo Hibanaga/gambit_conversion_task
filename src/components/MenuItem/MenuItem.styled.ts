@@ -34,12 +34,3 @@ export const WrapperItem = styled.div`
     }
   }
 `;
-
-export const Item = styled.span`
-  padding: 8px 16px;
-  overflow-wrap: break-word;
-
-  @media (max-width: 768px) {
-    margin: 0 auto;
-  }
-`;

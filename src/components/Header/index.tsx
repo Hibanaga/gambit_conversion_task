@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { Button } from "@mui/material";
-import { themes } from "../../styles/theme";
+import HeaderContent from "../HeaderContent";
 import * as StyledThisComp from "./Header.styled";
 import * as StyledWrapper from "../../styles/Home.styled";
 
@@ -22,40 +21,18 @@ const Header: FC<IHeaderProps> = ({
       <StyledWrapper.Wrapper>
         <StyledThisComp.Row>
           {isExistData ? (
-            <>
-              <StyledThisComp.Content>
-                {date?.substring(0, 17)}
-              </StyledThisComp.Content>
-              <StyledThisComp.ButtonWrapper>
-                <Button
-                  variant="text"
-                  style={{
-                    color: themes.colours.blue100,
-                    fontSize: `${themes.fontSizes.secondary}px`,
-                  }}
-                  onClick={onLogout}
-                >
-                  log out
-                </Button>
-              </StyledThisComp.ButtonWrapper>
-            </>
+            <HeaderContent
+              content={date?.substring(0, 17)}
+              buttonText="log out"
+              action={onLogout}
+            />
           ) : (
-            <>
-              <StyledThisComp.Content capitalize={true}>
-                Gambitgroup
-              </StyledThisComp.Content>
-
-              <Button
-                variant="text"
-                style={{
-                  color: themes.colours.blue100,
-                  fontSize: `${themes.fontSizes.secondary}px`,
-                }}
-                onClick={onSetAsset}
-              >
-                test case
-              </Button>
-            </>
+            <HeaderContent
+              content="Gambitgroup"
+              buttonText="test case"
+              action={onSetAsset}
+              capitalize={true}
+            />
           )}
         </StyledThisComp.Row>
       </StyledWrapper.Wrapper>
