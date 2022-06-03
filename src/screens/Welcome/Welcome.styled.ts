@@ -63,7 +63,7 @@ export const ErrorMessage = styled.span`
 
 export const BackEffectImage = styled.img`
   position: absolute;
-  left: 2.5%;
+  left: 0;
   bottom: 0.5%;
 
   @media (max-width: 1600px) {
