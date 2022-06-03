@@ -4,6 +4,7 @@ import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import Welcome from "./screens/Welcome";
 import { IParsedData } from "./types/parser.types";
+import { assetTestCase } from "./utils/options";
 import { getParsedFileData } from "./utils/parseFile";
 import * as StyledThisComp from "./styles/Home.styled";
 
@@ -11,18 +12,27 @@ function App() {
   const [asset, setAsset] = useState<string | null>(null);
   const [parsedData, setParsedData] = useState<IParsedData | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
+  const [error, setError] = useState("");
 
   const showFile = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const reader = new FileReader();
-    reader.onload = (e: ProgressEvent<FileReader>) => {
-      const target = e.target as FileReader;
-      const text = target && target.result;
-      setAsset(text as string);
-    };
     const targetValue = (e.target as HTMLInputElement)?.files;
-    const firstElement = (targetValue as FileList)[0];
-    reader.readAsText(firstElement);
+    const textFile = (targetValue as FileList)[0];
+    const fileType = textFile.name.split(".").reverse()[0];
+
+    if (fileType === "txt") {
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const target = e.target as FileReader;
+        const text = target && target.result;
+        setAsset(text as string);
+      };
+      setError("");
+      setCurrentStep(0);
+      reader.readAsText(textFile);
+    } else {
+      setError("Error: Provide wrong file type");
+    }
   };
 
   useEffect(() => {
@@ -37,15 +47,21 @@ function App() {
     setParsedData(null);
   };
 
+  const uploadTestCaseHandler = () => {
+    setCurrentStep(0);
+    setAsset(assetTestCase);
+  };
+
   return (
     <StyledThisComp.Container>
       <Header
         isExistData={!!parsedData}
         date={parsedData?.date}
+        onSetAsset={uploadTestCaseHandler}
         onLogout={handleLogout}
       />
       <StyledThisComp.Wrapper>
-        {parsedData ? (
+        {parsedData && !error ? (
           <Dashboard
             assetData={asset}
             parsedData={parsedData}
@@ -53,7 +69,7 @@ function App() {
             onChangeStep={handleChangeStep}
           />
         ) : (
-          <Welcome onShowFile={showFile} />
+          <Welcome onShowFile={showFile} errorMessage={error} />
         )}
       </StyledThisComp.Wrapper>
     </StyledThisComp.Container>

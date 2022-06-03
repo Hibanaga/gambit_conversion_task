@@ -4,3 +4,7 @@ export interface IParsedData {
   date: string;
   data: DataOptionType;
 }
+
+export interface IContentHeaderProps {
+  capitalize?: boolean;
+}

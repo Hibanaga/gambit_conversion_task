@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid ${themes.colours.borderInk};
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px 4px 0 0;
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -37,5 +37,6 @@ export const WrapperItem = styled.div`
 
 export const Item = styled.span`
   font-size: ${themes.fontSizes.tertiaryQuarter}px;
+  color: ${themes.colours.blue100};
   padding: 8px 16px;
 `;

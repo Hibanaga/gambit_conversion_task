@@ -1,6 +1,6 @@
 import React, { FC, SyntheticEvent } from "react";
-import { Tab } from "@mui/material";
 import { useRedirectDashboard } from "../../hooks/useRedirectDashboard";
+import { themes } from "../../styles/theme";
 import { IParsedData } from "../../types/parser.types";
 import { allyProps } from "../../utils/helperFunc";
 import * as StyledThisComp from "./Dashboard.styled";
@@ -49,7 +49,14 @@ const Dashboard: FC<IDashboardProps> = ({
           aria-label="basic tabs example"
         >
           {tabItems.map(({ currentStep, label }) => (
-            <Tab key={label} label={label} {...allyProps(currentStep)} />
+            <StyledThisComp.TabItem
+              key={label}
+              label={label}
+              style={{
+                color: themes.colours.blue100,
+              }}
+              {...allyProps(currentStep)}
+            />
           ))}
         </StyledThisComp.TabsWrapper>
         {menu}

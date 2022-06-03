@@ -1,11 +1,14 @@
 import React, { ChangeEvent, useRef } from "react";
 import * as StyledThisComp from "./Welcome.styled";
+import bubbleEffectImage from "../../images/bubbleEffects.png";
+import bubbleEffectBackImage from "../../images/bubblebackeffects.png";
 
 interface IWelcomeProps {
+  errorMessage: string;
   onShowFile: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Welcome = ({ onShowFile }: IWelcomeProps) => {
+const Welcome = ({ errorMessage, onShowFile }: IWelcomeProps) => {
   const inputRef = useRef<null | HTMLInputElement>(null);
 
   const uploadButtonHandler = () =>
@@ -17,7 +20,10 @@ const Welcome = ({ onShowFile }: IWelcomeProps) => {
         <StyledThisComp.Title>Welcome to conversator</StyledThisComp.Title>
 
         <StyledThisComp.Button onClick={uploadButtonHandler}>
-          Browse
+          Browse...{" "}
+          <StyledThisComp.ButtonAdditional>
+            (txt)
+          </StyledThisComp.ButtonAdditional>
           <input
             type="file"
             ref={inputRef}
@@ -25,7 +31,23 @@ const Welcome = ({ onShowFile }: IWelcomeProps) => {
             style={{ display: "none" }}
           />
         </StyledThisComp.Button>
+
+        {!!errorMessage && (
+          <StyledThisComp.ErrorMessage>
+            {errorMessage}
+          </StyledThisComp.ErrorMessage>
+        )}
       </StyledThisComp.ContentWrapper>
+
+      <StyledThisComp.BackEffectImage
+        src={bubbleEffectImage}
+        alt="back image effect"
+      />
+
+      <StyledThisComp.BackEffectImage
+        src={bubbleEffectBackImage}
+        alt="back image effect"
+      />
     </StyledThisComp.Container>
   );
 };

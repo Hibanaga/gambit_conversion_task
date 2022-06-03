@@ -17,8 +17,10 @@ export const StatusContent = styled.span`
   padding-top: 12px;
   display: block;
   font-size: ${themes.fontSizes.basic}px;
+  color: ${themes.colours.blue100};
   overflow-wrap: break-word;
   line-height: 20px;
+  font-weight: 500;
 `;
 
 export const InformationWrapper = styled.div`

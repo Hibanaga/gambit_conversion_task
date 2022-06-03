@@ -9,9 +9,9 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { arrOptions } from "../../assets/assets";
+import { themes } from "../../styles/theme";
 import { IParsedData } from "../../types/parser.types";
-import { options } from "../../utils/options";
+import { arrOptions, options } from "../../utils/options";
 import { getCalculateValue } from "../../utils/switchParser";
 import * as StyledThisComp from "./Chart.styled";
 
@@ -40,9 +40,9 @@ const Chart: FC<IChartProps> = ({ parsedData }) => {
     labels,
     datasets: [
       {
-        label: "Output data",
+        label: "conversion",
         data: chartValues,
-        backgroundColor: "rgb(255, 99, 132)",
+        backgroundColor: themes.colours.blue100,
       },
     ],
   };

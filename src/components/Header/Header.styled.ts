@@ -1,12 +1,16 @@
-import { Tabs } from "@mui/material";
 import styled from "styled-components";
 import { themes } from "../../styles/theme";
+import { IContentHeaderProps } from "../../types/parser.types";
 
 export const Container = styled.div`
   height: 100px;
   width: 100%;
   background-color: ${themes.colours.ink600};
   position: relative;
+  z-index: 1;
+  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 `;
 
 export const Row = styled.div`
@@ -17,12 +21,18 @@ export const Row = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 200px;
   display: flex;
   justify-content: flex-end;
 `;
 
 export const Content = styled.span`
   font-size: ${themes.fontSizes.tertiary}px;
-  width: 200px;
+  color: ${themes.colours.blue100};
+  font-weight: 500;
+
+  &:first-letter {
+    font-size: ${({ capitalize }: IContentHeaderProps) =>
+      capitalize && `${themes.fontSizes.fourfoldQuarter}px`};
+    font-weight: ${({ capitalize }: IContentHeaderProps) => capitalize && 700};
+  }
 `;

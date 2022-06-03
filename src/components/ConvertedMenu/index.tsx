@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { arrOptions } from "../../assets/assets";
 import * as StyledThisComp from "../../screens/Dashboard/Dashboard.styled";
 import { IParsedData } from "../../types/parser.types";
+import { arrOptions } from "../../utils/options";
 import { getCalculateValue } from "../../utils/switchParser";
 import MenuHeader from "../MenuHeader";
 import MenuItem from "../MenuItem";
