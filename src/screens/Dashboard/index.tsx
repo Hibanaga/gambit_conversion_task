@@ -20,6 +20,7 @@ const Dashboard: FC<IDashboardProps> = ({
 }) => {
   const isFullPackData =
     Object.values((parsedData as IParsedData)?.data).length === 100;
+
   const menu = useRedirectDashboard(
     currentStep,
     parsedData,

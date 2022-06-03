@@ -1,12 +1,30 @@
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from "react";
 import "./styles/globals.css";
+import { assetTestCase } from "./consts/variables";
 import Dashboard from "./screens/Dashboard";
 import Header from "./components/Header";
 import Welcome from "./screens/Welcome";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { IParsedData } from "./types/parser.types";
-import { assetTestCase } from "./utils/options";
 import { getParsedFileData } from "./utils/parseFile";
 import * as StyledThisComp from "./styles/Home.styled";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function App() {
   const [asset, setAsset] = useState<string | null>(null);
@@ -16,22 +34,27 @@ function App() {
 
   const showFile = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const reader = new FileReader();
-    const targetValue = (e.target as HTMLInputElement)?.files;
-    const textFile = (targetValue as FileList)[0];
-    const fileType = textFile.name.split(".").reverse()[0];
 
-    if (fileType === "txt") {
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        const target = e.target as FileReader;
-        const text = target && target.result;
-        setAsset(text as string);
-      };
-      setError("");
-      setCurrentStep(0);
-      reader.readAsText(textFile);
-    } else {
-      setError("Error: Provide wrong file type");
+    try {
+      const reader = new FileReader();
+      const targetValue = (e.target as HTMLInputElement)?.files;
+      const textFile = (targetValue as FileList)[0];
+      const fileType = textFile.name.split(".").reverse()[0];
+
+      if (fileType === "txt") {
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          const target = e.target as FileReader;
+          const text = target && target.result;
+          !!text && setAsset(text as string);
+        };
+        setError("");
+        setCurrentStep(0);
+        reader.readAsText(textFile);
+      } else {
+        setError("Error: Provide wrong file type");
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 

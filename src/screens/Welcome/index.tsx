@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useRef } from "react";
 import * as StyledThisComp from "./Welcome.styled";
-import bubbleEffectImage from "../../images/bubbleEffects.png";
-import bubbleEffectBackImage from "../../images/bubblebackeffects.png";
+import bubbleEffectImage from "../../assets/bubbleEffects.png";
+import bubbleEffectBackImage from "../../assets/bubblebackeffects.png";
 
 interface IWelcomeProps {
   errorMessage: string;

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
+import { actionsConversion } from "../consts/variables";
 import { DataOptionType } from "../types/parser.types";
-import { actionsConversion } from "./options";
 import {
   getParsedRegisterIntoInteger,
   getParsedRegisterIntoNumber,

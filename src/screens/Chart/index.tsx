@@ -1,28 +1,10 @@
 import React, { FC } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { arrOptions, options } from "../../consts/variables";
 import { themes } from "../../styles/theme";
 import { IParsedData } from "../../types/parser.types";
-import { arrOptions, options } from "../../utils/options";
 import { getCalculateValue } from "../../utils/switchParser";
 import * as StyledThisComp from "./Chart.styled";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 interface IChartProps {
   parsedData: IParsedData;
